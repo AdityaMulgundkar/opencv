@@ -15,11 +15,15 @@ jobs:
         ninja --version
         cmake --version
 
+    - name: Fetch opencv
+      run: |
+        git clone --depth 1 https://github.com/opencv/opencv.git ../opencv
+
     - name: Configure
       run: |
         $CMAKE_GENERATOR_OPTIONS="Visual Studio 16 2019"
 
-        $RepoSource="./"
+        $RepoSource="opencv"
         mkdir build
         cd build
 
