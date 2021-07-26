@@ -26,7 +26,8 @@ jobs:
         cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "${(-DBUILD_PERF_TESTS:BOOL=OFF -DBUILD_TESTS:BOOL=OFF -DBUILD_DOCS:BOOL=OFF -DWITH_CUDA:BOOL=OFF -DBUILD_EXAMPLES:BOOL=OFF -DINSTALL_CREATE_DISTRIB=ON)}" -S "D:/a/opencv/opencv" -B "D:/a/opencv/build"
         echo "************************* $Source_DIR -->debug"
         
-        cmake --build ''  --config debug --target clean
+        cmake --build ''  --config debug
+        cmake --build ''  --target install --config debug
 
     - name: Upload Artifact GitHub Action
       uses: actions/upload-artifact@v2
