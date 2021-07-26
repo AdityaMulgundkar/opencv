@@ -19,7 +19,7 @@ jobs:
       run: |
         $CMAKE_GENERATOR_OPTIONS="Visual Studio 16 2019"
 
-        $RepoSource=""
+        $RepoSource="./"
         mkdir build
         cd build
 
