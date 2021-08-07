@@ -30,5 +30,7 @@ jobs:
     - name: Upload Artifact GitHub Action
       uses: actions/upload-artifact@v2
       with: 
-        title: assets-for-download
-          - files: [ "D:/a/opencv/build/bin/", "D:/a/opencv/build/lib/" ]
+        name: assets-for-download
+        path: |
+          D:/a/opencv/build/bin/
+          D:/a/opencv/build/lib/
