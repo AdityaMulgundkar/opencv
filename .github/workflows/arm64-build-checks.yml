@@ -15,7 +15,7 @@ jobs:
         ninja --version
         cmake --version
 
-    - name: Configure
+    - name: Build world DLLs
       run: |
         $CMAKE_GENERATOR_OPTIONS="Visual Studio 16 2019"
 
@@ -26,6 +26,8 @@ jobs:
         cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_opencv_world:BOOL=ON -DBUILD_SHARED_LIBS:BOOL=ON" -S "D:/a/opencv/opencv" -B "D:/a/opencv/build"
         
         cmake --build "D:/a/opencv/build" --config Debug
+
+        cmake --build "D:/a/opencv/build" --config Release
 
     - name: Upload Artifact GitHub Action
       uses: actions/upload-artifact@v2
