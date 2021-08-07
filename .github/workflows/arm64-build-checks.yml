@@ -23,7 +23,7 @@ jobs:
         mkdir build
         cd build
 
-        cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_SHARED_LIBS:BOOL=ON -DBUILD_opencv_world:BOOL=ON" -S "D:/a/opencv/opencv" -B "D:/a/opencv/build"
+        cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_opencv_world:BOOL=ON -DBUILD_SHARED_LIBS:BOOL=ON" -S "D:/a/opencv/opencv" -B "D:/a/opencv/build"
         
         cmake --build "D:/a/opencv/build" --config Debug
 
@@ -31,4 +31,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with: 
         name: assets-for-download
-        path: "D:/a/opencv/build/bin"
+        path: "D:/a/opencv/build/"
