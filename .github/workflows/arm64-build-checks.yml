@@ -1,47 +1,49 @@
-name: arm64 build checks
+name: nuget build checks
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      vcVersions:
+        description: "Visual C Compiler Version"
+        required: true
+        default: "vc16"
 
 jobs:
   build:
-
-    runs-on: ubuntu-18.04
+    runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Install dependency packages
-      run: |
-        sudo sed -i -E 's|^deb ([^ ]+) (.*)$|deb [arch=amd64] \1 \2\ndeb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ \2|' /etc/apt/sources.list
-        sudo dpkg --add-architecture arm64
-        sudo apt-get update
-        sudo apt-get install -y --no-install-recommends \
-                crossbuild-essential-arm64 \
-                git \
-                cmake \
-                libpython-dev:arm64 \
-                libpython3-dev:arm64 \
-                python-numpy \
-                python3-numpy
+      - uses: actions/checkout@v2
+      - name: Install dependency packages
+        run: |
+          choco install ninja cmake
+          ninja --version
+          cmake --version
+      - name: Build nuspec and targets
+        run: |
+          cd platforms/nuget
+          mkdir build
+          cd build
+          python build-targets.py
+          python build-jinja.py --package_version "${{ github.event.inputs.vcVersions }}"
+      - name: Build world DLLs
+        run: |
+          $CMAKE_GENERATOR_OPTIONS="Visual Studio 16 2019"
+          $RepoSource="../opencv"
+          cd ..
+          cd ..
+          cd ..
+          mkdir build
+          cd build
+          cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_opencv_world:BOOL=ON" -S "D:/a/opencv/opencv" -B "D:/a/opencv/build"
 
-    - name: Fetch opencv_contrib
-      run: |
-        git clone --depth 1 https://github.com/opencv/opencv_contrib.git ../opencv_contrib
-
-    - name: Configure
-      run: |
-        mkdir build
-        cd build
-        cmake -DPYTHON2_INCLUDE_PATH=/usr/include/python2.7/ \
-              -DPYTHON2_LIBRARIES=/usr/lib/aarch64-linux-gnu/libpython2.7.so \
-              -DPYTHON2_NUMPY_INCLUDE_DIRS=/usr/lib/python2.7/dist-packages/numpy/core/include \
-              -DPYTHON3_INCLUDE_PATH=/usr/include/python3.6m/ \
-              -DPYTHON3_LIBRARIES=/usr/lib/aarch64-linux-gnu/libpython3.6m.so \
-              -DPYTHON3_NUMPY_INCLUDE_DIRS=/usr/lib/python3/dist-packages/numpy/core/include \
-              -DCMAKE_TOOLCHAIN_FILE=../platforms/linux/aarch64-gnu.toolchain.cmake \
-              -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-              ../
-
-    - name: Build
-      run: |
-        cd build
-        make -j$(nproc --all)
+          # cmake --build "D:/a/opencv/build" --config Debug
+          # cmake --build "D:/a/opencv/build" --config Release
+      - name: Upload Artifact GitHub Action
+        uses: actions/upload-artifact@v2
+        with:
+          name: assets-for-download
+          path: |
+            D:/a/opencv/build/bin/
+            D:/a/opencv/build/lib/
+            D:/a/opencv/nupkg
