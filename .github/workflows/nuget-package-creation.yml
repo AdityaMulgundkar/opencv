@@ -19,8 +19,6 @@ jobs:
           choco install ninja cmake
           ninja --version
           cmake --version
-          python -m pip install --upgrade pip
-          pip install jinja2
       - name: Build nuspec and targets
         run: |
           cd platforms/nuget
