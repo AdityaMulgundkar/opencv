@@ -51,8 +51,7 @@ def main():
     # Parse arguments
     args = parse_arguments()
     if args.package_version is not None:
-        params['compilers'] = args.package_version
-    print("Packing for... " + params['compilers'])
+        params['compilers'] = args.package_version.split(',')
     # Create template files
     create_nuspec()
 if __name__ == "__main__":
