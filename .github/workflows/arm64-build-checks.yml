@@ -23,7 +23,7 @@ jobs:
         mkdir build
         cd build
 
-        cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_opencv_world:BOOL=ON -DBUILD_SHARED_LIBS:BOOL=OFF" -S "D:/a/opencv/opencv" -B "D:/a/opencv/build"
+        cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_opencv_world:BOOL=ON -DBUILD_SHARED_LIBS=OFF" -S "D:/a/opencv/opencv" -B "D:/a/opencv/build"
         
         cmake --build "D:/a/opencv/build" --config Debug
 
