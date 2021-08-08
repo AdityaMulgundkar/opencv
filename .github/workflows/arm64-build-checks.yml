@@ -23,7 +23,6 @@ jobs:
         run: |
           cd platforms/nuget
           mkdir build
-          cd build
           python build-targets.py
           python build-jinja.py --package_version "${{ github.event.inputs.vcVersions }}"
       - name: Build world DLLs
