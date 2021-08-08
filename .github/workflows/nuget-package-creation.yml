@@ -44,4 +44,6 @@ jobs:
         with:
           name: assets-for-download
           path: |
-            D:/a/opencv/
+            D:/a/opencv/build/bin/
+            D:/a/opencv/build/lib/
+            D:/a/opencv/nupkg
