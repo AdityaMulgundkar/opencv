@@ -1,12 +1,7 @@
 name: nuget build checks
 
 on:
-  workflow_dispatch:
-    inputs:
-      vcVersions:
-        description: "Visual C Compiler Version"
-        required: true
-        default: "vc16"
+  workflow_dispatch
 
 jobs:
   build:
