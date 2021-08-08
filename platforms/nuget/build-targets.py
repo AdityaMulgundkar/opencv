@@ -2,12 +2,11 @@
 # .\build-targets.py --targets_path "C:\opencv-cpp-build" --targets_file "opencv-cpp.targets"
 import os, sys, argparse
 
-
 def parse_arguments():
     parser = argparse.ArgumentParser(description="OpenCV CPP create targets file script", usage='')
     # Main arguments
-    parser.add_argument("--targets_path", required=True, help="Path name for the generated targets file.")
-    parser.add_argument("--targets_file", required=True, help="File name for the generated targets file.")
+    parser.add_argument("--targets_path", required=False, help="Path name for the generated targets file.")
+    parser.add_argument("--targets_file", required=False, help="File name for the generated targets file.")
 
     return parser.parse_args()
 
@@ -71,7 +70,7 @@ def main():
     lines = generate_targets(args)
 
     # Create the nuspec needed to generate the Nuget
-    with open(os.path.join(args.targets_path, args.targets_file), 'w') as f:
+    with open(os.path.join(PATH, "build/opencv-cpp.targets"), 'w') as f:
         for line in lines:
             f.write(line)
             f.write('\n')
