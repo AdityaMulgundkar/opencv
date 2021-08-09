@@ -40,9 +40,7 @@ jobs:
         run: |
           $CMAKE_GENERATOR_OPTIONS="Visual Studio 16 2019"
           $RepoSource="../opencv"
-          cd ..
-          cd ..
-          cd ..
+          cd "D:/a/opencv/"
           mkdir build
           cd build
           cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_opencv_world:BOOL=ON" -S "D:/a/opencv/" -B "D:/a/opencv/build"
