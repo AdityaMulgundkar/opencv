@@ -47,13 +47,13 @@ jobs:
           cd build
           cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_opencv_world:BOOL=ON" -S "D:/a/opencv/" -B "D:/a/opencv/build"
 
-          cmake --build "D:/a/opencv/build" --config Debug
+          cmake --build "D:/a/opencv/build" --config Debug --target install
           # cmake --build "D:/a/opencv/build" --config Release
       - name: Build shared libs
         run: |
           cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_SHARED_LIBS=ON" -S "D:/a/opencv/" -B "D:/a/opencv/build"
 
-          cmake --build "D:/a/opencv/build" --config Debug
+          # cmake --build "D:/a/opencv/build" --config Debug
           # cmake --build "D:/a/opencv/build" --config Release
       - name: Build nupkg
         run: |
