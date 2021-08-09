@@ -18,17 +18,17 @@
 		</authors>
 	</metadata>
 	<files>
-		<file src="{{ params.build }}\include\**\*.*" target="build\native\include" />
+		<file src="{{ params.directory }}\include\**\*.*" target="build\native\include" />
 
 		{% for msvc in params.compilers -%}
 		{% for arch in params.architectures -%}
-		<file src="{{ params.build }}\lib\**\opencv_world*.lib" target="build\native\{{ arch }}\{{ msvc }}.0\lib" />
-		<file src="{{ params.build }}\bin\**\opencv_world*.dll" target="build\native\{{ arch }}\{{ msvc }}.0\bin" />
-		<file src="{{ params.build }}\bin\**\opencv_world*.pdb" target="build\native\{{ arch }}\{{ msvc }}.0\bin" />
+		<file src="{{ params.directory }}\lib\**\opencv_world*.lib" target="build\native\{{ arch }}\{{ msvc }}.0\lib" />
+		<file src="{{ params.directory }}\bin\**\opencv_world*.dll" target="build\native\{{ arch }}\{{ msvc }}.0\bin" />
+		<file src="{{ params.directory }}\bin\**\opencv_world*.pdb" target="build\native\{{ arch }}\{{ msvc }}.0\bin" />
 
 		{% endfor -%}
 		{% endfor -%}
-		<file src="{{ params.build }}\README.md" target="build\native" />
-		<file src="{{ params.build }}\OpenCVNuget.targets" target="build\native" />
+		<file src="{{ params.directory }}\README.md" target="build\native" />
+		<file src="{{ params.directory }}\OpenCVNuget.targets" target="build\native" />
 	</files>
 </package>
