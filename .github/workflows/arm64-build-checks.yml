@@ -39,17 +39,17 @@ jobs:
           cd ..
           mkdir build
           cd build
-          cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_opencv_world:BOOL=ON" -S "D:/a/opencv/" -B "D:/a/opencv/build"
+          cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_opencv_world:BOOL=ON" -S "D:/a/opencv/opencv" -B "D:/a/opencv/build"
 
           cmake --build "D:/a/opencv/build" --config Debug
-          # cmake --build "D:/a/opencv/build" --config Release
+          cmake --build "D:/a/opencv/build" --config Release
       - name: Build shared libs
         run: |
           cd ..platforms/nuget/build
-          # cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_SHARED_LIBS=ON" -S "D:/a/opencv/" -B "D:/a/opencv/build"
+          # cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_SHARED_LIBS=ON" -S "D:/a/opencv/opencv" -B "D:/a/opencv/build"
 
           cmake --build "D:/a/opencv/build" --config Debug
-          # cmake --build "D:/a/opencv/build" --config Release
+          cmake --build "D:/a/opencv/build" --config Release
       - name: Build nupkg
         run: |
           mkdir nupkg
