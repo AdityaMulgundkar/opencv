@@ -14,6 +14,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - uses: nuget/setup-nuget@v1
+        with:
+          nuget-version: 'latest'
       - name: Install dependency packages
         run: |
           choco install ninja cmake
@@ -36,10 +39,21 @@ jobs:
           cd ..
           mkdir build
           cd build
-          cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_opencv_world:BOOL=ON" -S "D:/a/opencv/opencv" -B "D:/a/opencv/build"
+          cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_opencv_world:BOOL=ON" -S "D:/a/opencv/" -B "D:/a/opencv/build"
 
-          # cmake --build "D:/a/opencv/build" --config Debug
+          cmake --build "D:/a/opencv/build" --config Debug
           # cmake --build "D:/a/opencv/build" --config Release
+      - name: Build shared libs
+        run: |
+          cd ..platforms/nuget/build
+          # cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_SHARED_LIBS=ON" -S "D:/a/opencv/" -B "D:/a/opencv/build"
+
+          cmake --build "D:/a/opencv/build" --config Debug
+          # cmake --build "D:/a/opencv/build" --config Release
+      - name: Build nupkg
+        run: |
+          mkdir nupkg
+          nuget pack opencv.nuspec /nupkg
       - name: Upload Artifact GitHub Action
         uses: actions/upload-artifact@v2
         with:
