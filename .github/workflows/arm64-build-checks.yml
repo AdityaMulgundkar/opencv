@@ -45,7 +45,7 @@ jobs:
           # cmake --build "D:/a/opencv/build" --config Release
       - name: Build nupkg
         run: |
-          cd ..platforms/nuget/build
+          cd platforms/nuget/build
           mkdir nupkg
           nuget pack opencv.nuspec /nupkg
       - name: Upload Artifact GitHub Action
