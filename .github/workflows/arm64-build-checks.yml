@@ -14,6 +14,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Cache OpenCV Build
+        id: cache-opencv-build
+        uses: actions/cache@v2
+        with:
+          path: opencv-build
+          key: ${{ runner.os }}-opencv-build
       - uses: nuget/setup-nuget@v1
         with:
           nuget-version: 'latest'
@@ -29,7 +35,7 @@ jobs:
           cd platforms/nuget
           mkdir build
           python build-targets.py
-          python build-jinja.py --package_version "${{ github.event.inputs.vcVersions }}" --build_directory "D:/a/opencv/opencv"
+          python build-jinja.py --package_version "${{ github.event.inputs.vcVersions }}" --build_directory "D:/a/opencv/"
       - name: Build world DLLs
         run: |
           $CMAKE_GENERATOR_OPTIONS="Visual Studio 16 2019"
@@ -48,7 +54,7 @@ jobs:
           cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_SHARED_LIBS=ON" -S "D:/a/opencv/opencv" -B "D:/a/opencv/build"
 
           cmake --build "D:/a/opencv/build" --config Debug
-          # cmake --build "D:/a/opencv/build" --config Release          
+          # cmake --build "D:/a/opencv/build" --config Release
       - name: Build nupkg
         run: |
           cd platforms/nuget/build
