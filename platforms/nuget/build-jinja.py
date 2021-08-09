@@ -24,6 +24,7 @@ params = {
 'authors': 'OpenCV',
 'compilers': ['vc14', 'vc15', 'vc16'],
 'architectures': ['x64'],
+'directory': '',
 }
 
 def parse_arguments():
@@ -32,6 +33,7 @@ def parse_arguments():
     # Main arguments
     parser.add_argument("--package_name", required=False, help="Package name. e.g.: OpenCV.CPP")
     parser.add_argument("--package_version", required=False, help="Package version. e.g: 1.0.0")
+    parser.add_argument("--build_directory", required=False, help="Package version. e.g: 1.0.0")
 
     return parser.parse_args()
 
@@ -52,6 +54,8 @@ def main():
     args = parse_arguments()
     if args.package_version is not None:
         params['compilers'] = args.package_version.split(',')
+    if args.build_directory is not None:
+        params['directory'] = args.build_directory
     # Create template files
     create_nuspec()
 if __name__ == "__main__":

@@ -26,7 +26,7 @@ jobs:
           cd platforms/nuget
           mkdir build
           python build-targets.py
-          python build-jinja.py --package_version "${{ github.event.inputs.vcVersions }}"
+          python build-jinja.py --package_version "${{ github.event.inputs.vcVersions }}" --build_directory "D:/a/opencv/"
       - name: Build world DLLs
         run: |
           $CMAKE_GENERATOR_OPTIONS="Visual Studio 16 2019"
