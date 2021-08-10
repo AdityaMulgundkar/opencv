@@ -66,7 +66,7 @@ def create_nuspec():
     print("WRITING to: " + targets_to)
     
     # Write the targets file
-    copy(targets_from, targets_to)
+    copyfile(targets_from, targets_to)
     
 def main():
     # Parse arguments
