@@ -1,5 +1,6 @@
 import os, argparse
 from pathlib import Path
+from shutil import copyfile
 from jinja2 import Environment, FileSystemLoader
 PATH = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_ENVIRONMENT = Environment(
@@ -41,15 +42,21 @@ def render_template(template_filename, context):
     return TEMPLATE_ENVIRONMENT.get_template(template_filename).render(context)
 
 def create_nuspec():
+    # Write the nuspec file
     FILE_PATH = str(Path(PATH).parents[2])
     fname = FILE_PATH + "/build/install/opencv.nuspec"
     context = {
         'params': params
     }
+    print("WRITING FILE_PATH: "+ FILE_PATH)
+    print("WRITING fname: "+ fname)
     with open(fname, 'w') as f:
         html = render_template('OpenCVNuget.nuspec', context)
         f.write(html)
 
+    # Write the targets file
+    # copy(src, dst)
+    
 def main():
     # Parse arguments
     args = parse_arguments()
