@@ -1,6 +1,7 @@
 # run script
 # .\build-targets.py --targets_path "C:\opencv-cpp-build" --targets_file "opencv-cpp.targets"
 import os, sys, argparse
+from pathlib import Path
 PATH = os.path.dirname(os.path.abspath(__file__))
 
 def parse_arguments():
