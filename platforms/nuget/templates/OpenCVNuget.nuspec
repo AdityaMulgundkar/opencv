@@ -20,6 +20,8 @@
 	<files>
 		<file src="{{ params.directory }}\include\**\*.*" target="build\native\include" />
 
+		<file src="{{ params.directory }}\OpenCVNuget.targets" target="build\native" />
+		
 		{% for msvc in params.compilers -%}
 		{% for arch in params.architectures -%}
 		<file src="{{ params.directory }}\{{ arch }}\{{ msvc }}\lib\**\opencv_world*.lib" target="build\native\{{ arch }}\{{ msvc }}.0\lib" />
@@ -27,6 +29,5 @@
 
 		{% endfor -%}
 		{% endfor -%}
-		<file src="{{ params.directory }}\OpenCVNuget.targets" target="build\native" />
 	</files>
 </package>

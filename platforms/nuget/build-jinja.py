@@ -51,20 +51,22 @@ def create_nuspec():
     UP_PATH = os.path.dirname(PATH)
     UP_PATH = os.path.dirname(UP_PATH)
     UP_PATH = os.path.dirname(UP_PATH)
-    print("WRITING PATH: " + PATH)
-    print("WRITING UP_PATH: " + UP_PATH)
-    print("WRITING FILE_PATH: " + FILE_PATH)
 
     fname = UP_PATH + '\\build\\install\\opencv.nuspec'
 
-    print("WRITING fname: " + fname)
 
     with open(fname, 'w') as f:
         html = render_template('OpenCVNuget.nuspec', context)
         f.write(html)
 
+    targets_from = UP_PATH + '\\opencv\\platforms\\nuget\\templates\\OpenCVNuget.targets'
+    targets_to = UP_PATH + '\\build\\install\\OpenCVNuget.targets'
+
+    print("WRITING from: " + targets_from)
+    print("WRITING to: " + targets_to)
+    
     # Write the targets file
-    # copy(src, dst)
+    copy(targets_from, targets_to)
     
 def main():
     # Parse arguments
