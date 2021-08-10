@@ -71,8 +71,9 @@ def main():
     # Generate targets
     lines = generate_targets(args)
 
-    FILE_PATH = str(Path(PATH).parents[2])
+    FILE_PATH = str(Path(PATH))
 
+    print("Writing to: " + FILE_PATH)
     # Create the nuspec needed to generate the Nuget
     with open(os.path.join(FILE_PATH, "/build/install/opencv-cpp.targets"), 'w') as f:
         for line in lines:
