@@ -47,6 +47,7 @@ jobs:
           cd platforms/nuget
           mkdir build
           cd build
+          cd ..
           python build-jinja.py --package_version "${{ github.event.inputs.vcVersions }}" --build_directory "D:\a\opencv\build\install\" 
       - name: Build nupkg
         run: |
