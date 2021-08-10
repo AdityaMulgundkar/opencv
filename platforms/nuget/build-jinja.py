@@ -60,7 +60,7 @@ def create_nuspec():
     print("WRITING fname: " + fname)
 
     with open(fname, 'w') as f:
-        html = render_template('/../OpenCVNuget.nuspec', context)
+        html = render_template('OpenCVNuget.nuspec', context)
         f.write(html)
 
     # Write the targets file
