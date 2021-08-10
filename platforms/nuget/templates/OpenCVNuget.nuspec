@@ -27,7 +27,6 @@
 
 		{% endfor -%}
 		{% endfor -%}
-		<file src="{{ params.directory }}\README.md" target="build\native" />
 		<file src="{{ params.directory }}\OpenCVNuget.targets" target="build\native" />
 	</files>
 </package>

@@ -41,7 +41,8 @@ def render_template(template_filename, context):
     return TEMPLATE_ENVIRONMENT.get_template(template_filename).render(context)
 
 def create_nuspec():
-    fname = "build/opencv.nuspec"
+    FILE_PATH = str(Path(PATH).parents[2])
+    fname = FILE_PATH + "/build/install/opencv.nuspec"
     context = {
         'params': params
     }
