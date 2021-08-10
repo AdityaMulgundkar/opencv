@@ -48,7 +48,9 @@ def create_nuspec():
     context = {
         'params': params
     }
+    UP_PATH = os.path.dirname(PATH)
     print("WRITING PATH: " + PATH)
+    print("WRITING PATH: " + UP_PATH)
     print("WRITING FILE_PATH: " + FILE_PATH)
     print("WRITING fname: " + fname)
     with open(fname, 'w') as f:
