@@ -48,8 +48,9 @@ def create_nuspec():
     context = {
         'params': params
     }
-    print("WRITING FILE_PATH: "+ FILE_PATH)
-    print("WRITING fname: "+ fname)
+    print("WRITING PATH: " + PATH)
+    print("WRITING FILE_PATH: " + FILE_PATH)
+    print("WRITING fname: " + fname)
     with open(fname, 'w') as f:
         html = render_template('OpenCVNuget.nuspec', context)
         f.write(html)
