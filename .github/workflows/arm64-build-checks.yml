@@ -49,7 +49,7 @@ jobs:
           python build-jinja.py --package_version "${{ github.event.inputs.vcVersions }}" --build_directory "D:\a\opencv\build\install\" 
       - name: Build nupkg
         run: |
-          cd "D:/a/opencv/opencv/platforms/nuget/build"
+          cd "D:/a/opencv/build/install/"
           mkdir nupkg
           nuget pack opencv.nuspec -OutputDirectory nupkg
       - name: Upload Artifact GitHub Action
