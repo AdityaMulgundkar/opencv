@@ -55,7 +55,7 @@ def create_nuspec():
     print("WRITING UP_PATH: " + UP_PATH)
     print("WRITING FILE_PATH: " + FILE_PATH)
 
-    fname = UP_PATH + '/build/install/opencv.nuspec'
+    fname = UP_PATH + '\\build\\install\\opencv.nuspec'
 
     print("WRITING fname: " + fname)
 
