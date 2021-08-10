@@ -44,15 +44,20 @@ def render_template(template_filename, context):
 def create_nuspec():
     # Write the nuspec file
     FILE_PATH = str(Path(PATH).parents[2])
-    fname = "D:/a:opencv/build/install/opencv.nuspec"
+    # fname = "D:/a:opencv/build/install/opencv.nuspec"
     context = {
         'params': params
     }
     UP_PATH = os.path.dirname(PATH)
+    UP_PATH = os.path.dirname(PATH)
+    UP_PATH = os.path.dirname(PATH)
     print("WRITING PATH: " + PATH)
-    print("WRITING PATH: " + UP_PATH)
+    print("WRITING UP_PATH: " + UP_PATH)
     print("WRITING FILE_PATH: " + FILE_PATH)
     print("WRITING fname: " + fname)
+
+    fname = UP_PATH + '/build/install/opencv.nuspec'
+
     with open(fname, 'w') as f:
         html = render_template('OpenCVNuget.nuspec', context)
         f.write(html)
