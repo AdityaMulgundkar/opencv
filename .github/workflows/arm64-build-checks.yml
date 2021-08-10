@@ -40,6 +40,12 @@ jobs:
 
           # cmake --build "D:/a/opencv/build" --config Debug --target install
           # cmake --build "D:/a/opencv/build" --config Release --target install
+      - name: Build nuspec and targets
+        run: |
+          cd platforms/nuget
+          mkdir build
+          python build-targets.py
+          python build-jinja.py --package_version "${{ github.event.inputs.vcVersions }}" --build_directory "D:\a\opencv\build\install\" 
       - name: Build nupkg
         run: |
           cd "D:/a/opencv/opencv/platforms/nuget/build"
