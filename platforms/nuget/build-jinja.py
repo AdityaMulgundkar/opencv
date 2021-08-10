@@ -54,10 +54,11 @@ def create_nuspec():
     print("WRITING PATH: " + PATH)
     print("WRITING UP_PATH: " + UP_PATH)
     print("WRITING FILE_PATH: " + FILE_PATH)
-    print("WRITING fname: " + fname)
 
     fname = UP_PATH + '/build/install/opencv.nuspec'
 
+    print("WRITING fname: " + fname)
+    
     with open(fname, 'w') as f:
         html = render_template('OpenCVNuget.nuspec', context)
         f.write(html)
