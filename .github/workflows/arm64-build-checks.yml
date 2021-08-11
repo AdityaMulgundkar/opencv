@@ -51,7 +51,7 @@ jobs:
         run: |
           cd "D:/a/opencv/build/install/"
           mkdir nupkg
-          nuget pack opencv.nuspec -OutputDirectory nupkg
+          # nuget pack opencv.nuspec -OutputDirectory nupkg
       - name: Upload Artifact GitHub Action
         uses: actions/upload-artifact@v2
         with:
