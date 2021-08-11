@@ -18,6 +18,7 @@
 		</authors>
 	</metadata>
 	<files>
-		
+		<file src="{{ params.directory }}\**\*.*" target="build\native\include" />
+
 	</files>
 </package>
