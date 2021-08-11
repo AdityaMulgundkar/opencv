@@ -55,4 +55,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: nupkg-file
-          path: "D:/a/opencv/opencv/platforms/nuget/build/nupkg/"name: nuget build checks
+          path: "D:/a/opencv/opencv/platforms/nuget/build/nupkg/"
