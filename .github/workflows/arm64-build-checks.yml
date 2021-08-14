@@ -18,4 +18,12 @@ jobs:
         if: "${{ github.event.inputs.vcVersions == 'vc14' }}"
         run: |
           $CMAKE_GENERATOR_OPTIONS="Visual Studio 14 2017"
+      - name: Set vc15
+        if: "${{ github.event.inputs.vcVersions == 'vc15' }}"
+        run: |
+          $CMAKE_GENERATOR_OPTIONS="Visual Studio 15 2018"
+      - name: Set vc16
+        if: "${{ github.event.inputs.vcVersions == 'vc16' }}"
+        run: |
+          $CMAKE_GENERATOR_OPTIONS="Visual Studio 16 2019"
       
