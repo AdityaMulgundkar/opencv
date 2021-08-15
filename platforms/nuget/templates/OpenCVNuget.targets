@@ -26,8 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)\x64\vc$(VisualStudioVersion)\bin\opencv_ffmpeg_64.dll">
-      <Link>opencv_ffmpeg_64.dll</Link>
+    <None Include="$(MSBuildThisFileDirectory)\x64\vc$(VisualStudioVersion)\bin\*ffmpeg*.dll">
+      <Link>*ffmpeg*.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Visible>false</Visible>
     </None>
