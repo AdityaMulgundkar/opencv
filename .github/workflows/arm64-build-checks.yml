@@ -1,4 +1,4 @@
-name: nuget build checks
+name: nuget build (nupkg) checks
 
 on:
   workflow_dispatch:
@@ -66,4 +66,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: nupkg-file
-          path: "D:/a/opencv/build/install/nupkg/"
+          path: |
+            D:/a/opencv/build/install/nupkg/*.nupkg
