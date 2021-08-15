@@ -24,5 +24,13 @@
       <Visible>false</Visible>
     </None>
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)\x64\vc$(VisualStudioVersion)\bin\opencv_ffmpeg_64.dll">
+      <Link>opencv_ffmpeg_64.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </None>
+  </ItemGroup>
   
 </Project>
