@@ -80,9 +80,9 @@ def main():
     # Parse arguments
     args = parse_arguments()
     if args.package_version is not None:
-        params['compilers'] = args.package_version.split(',')
+        params_nuspec['compilers'] = args.package_version.split(',')
     if args.build_directory is not None:
-        params['directory'] = args.build_directory
+        params_nuspec['directory'] = args.build_directory
     # Create template files
     create_nuspec_targets()
 if __name__ == "__main__":
