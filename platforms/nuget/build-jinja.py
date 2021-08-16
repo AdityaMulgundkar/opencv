@@ -20,8 +20,9 @@ version_minor = version_file.split("CV_VERSION_MINOR")[1].split("\n")[0]
 version_revision = version_file.split("CV_VERSION_REVISION")[1].split("\n")[0]
 
 version_string = f'{version_major}.{version_minor}.{version_revision}'
+version_string_raw = f'{version_major}{version_minor}{version_revision}'
 
-params = {
+params_nuspec = {
 'id': 'OpenCVNuget',
 'version': version_string,
 'description': 'OpenCV Nuget Package for C++',
@@ -30,6 +31,10 @@ params = {
 'compilers': ['vc14', 'vc15', 'vc16'],
 'architectures': ['x64'],
 'directory': '',
+}
+
+params_targets = {
+'version': version_string_raw,
 }
 
 def parse_arguments():
@@ -45,30 +50,32 @@ def parse_arguments():
 def render_template(template_filename, context):
     return TEMPLATE_ENVIRONMENT.get_template(template_filename).render(context)
 
-def create_nuspec():
+def create_nuspec_targets():
     # Write the nuspec file
     FILE_PATH = str(Path(PATH).parents[2])
     
     context = {
-        'params': params
+        'params': params_nuspec
     }
     UP_PATH = os.path.dirname(PATH)
     UP_PATH = os.path.dirname(UP_PATH)
     UP_PATH = os.path.dirname(UP_PATH)
+    fname_nuspec = UP_PATH + r'\build\install\opencv.nuspec'
 
-    fname = UP_PATH + r'\build\install\opencv.nuspec'
-
-    with open(fname, 'w') as f:
+    with open(fname_nuspec, 'w') as f:
         html = render_template('OpenCVNuget.nuspec', context)
         f.write(html)
 
-    targets_from = UP_PATH + '\\opencv\\platforms\\nuget\\templates\\OpenCVNuget.targets'
-    targets_from = UP_PATH + r'\opencv\platforms\nuget\templates\OpenCVNuget.targets'
-    targets_to = UP_PATH + r'\build\install\OpenCVNuget.targets'
-
     # Write the targets file
-    copyfile(targets_from, targets_to)
+    context = {
+        'params': params_targets
+    }
+    fname_targets = UP_PATH + r'\build\install\OpenCVNuget.targets'
     
+    with open(fname_targets, 'w') as f:
+        html = render_template('OpenCVNuget.targets', context)
+        f.write(html)
+
 def main():
     # Parse arguments
     args = parse_arguments()
@@ -77,6 +84,6 @@ def main():
     if args.build_directory is not None:
         params['directory'] = args.build_directory
     # Create template files
-    create_nuspec()
+    create_nuspec_targets()
 if __name__ == "__main__":
     main()
