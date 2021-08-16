@@ -15,9 +15,9 @@ TEMPLATE_ENVIRONMENT = Environment(
 VERSION_PATH = str(Path(PATH).parents[1]) + "/modules/core/include/opencv2/core/version.hpp"
 version_file = Path(VERSION_PATH).read_text()
 
-version_major = version_file.split("CV_VERSION_MAJOR")[1].split("\n")[0]
-version_minor = version_file.split("CV_VERSION_MINOR")[1].split("\n")[0]
-version_revision = version_file.split("CV_VERSION_REVISION")[1].split("\n")[0]
+version_major = version_file.split("CV_VERSION_MAJOR")[1].split("\n")[0].replace(" ", "")
+version_minor = version_file.split("CV_VERSION_MINOR")[1].split("\n")[0].replace(" ", "")
+version_revision = version_file.split("CV_VERSION_REVISION")[1].split("\n")[0].replace(" ", "")
 
 version_string = f'{version_major}.{version_minor}.{version_revision}'
 version_string_raw = f'{version_major}{version_minor}{version_revision}'
