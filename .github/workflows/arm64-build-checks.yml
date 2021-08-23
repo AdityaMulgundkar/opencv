@@ -53,8 +53,8 @@ jobs:
           mkdir install
           cd ..
           cmake "${CMAKE_GENERATOR_OPTIONS[@]}" "-DBUILD_opencv_world:BOOL=ON -DWITH_FFMPEG=ON" -S "D:/a/opencv/opencv" -B "D:/a/opencv/build"
-          # cmake --build "D:/a/opencv/build" --config Debug --target install
-          # cmake --build "D:/a/opencv/build" --config Release --target install
+          cmake --build "D:/a/opencv/build" --config Debug --target install
+          cmake --build "D:/a/opencv/build" --config Release --target install
       - name: Build nuspec and targets
         run: |
           cd platforms/nuget
@@ -64,10 +64,10 @@ jobs:
         run: |
           cd "D:/a/opencv/build/install/"
           mkdir nupkg
-          # nuget pack opencv.nuspec -OutputDirectory nupkg
+          nuget pack opencv.nuspec -OutputDirectory nupkg
       - name: Upload Artifact GitHub Action
         uses: actions/upload-artifact@v2
         with:
           name: nupkg-file
           path: |
-            # D:/a/opencv/build/install/nupkg/*.nupkg
+            D:/a/opencv/build/install/nupkg/*.nupkg
