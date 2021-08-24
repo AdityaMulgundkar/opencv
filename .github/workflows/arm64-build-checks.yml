@@ -30,21 +30,10 @@ jobs:
           cmake --version
           python -m pip install --upgrade pip
           pip install jinja2
-      - name: Set vc14
-        if: "${{ github.event.inputs.vcVersions == 'vc14' }}"
-        run: |
-          $CMAKE_GENERATOR_OPTIONS="Visual Studio 14 2017"
-      - name: Set vc15
-        if: "${{ github.event.inputs.vcVersions == 'vc15' }}"
-        run: |
-          $CMAKE_GENERATOR_OPTIONS="Visual Studio 15 2018"
       - name: Set vc16
         if: "${{ github.event.inputs.vcVersions == 'vc16' }}"
         run: |
           $CMAKE_GENERATOR_OPTIONS="Visual Studio 16 2019"
-      - uses: ilammy/msvc-dev-cmd@v1
-        with:
-          toolset: 14.0
       - name: Build world DLLs
         run: |
           cd "D:/a/opencv/"
